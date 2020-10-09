@@ -22,27 +22,27 @@ EllosBoonSelectorMod.PriorityBoonCannonicalNameToCodeName = {
 }
 
 EllosBoonSelectorMod.HammerOptions = {
-	SwordWeapon = {"SwordTwoComboTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordBlinkTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordCriticalTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordHeavySecondStrikeTrait","SwordCursedLifeStealTrait"},
+	SwordWeapon1 = {"SwordTwoComboTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordBlinkTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordCriticalTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordHeavySecondStrikeTrait","SwordCursedLifeStealTrait"},
 	SwordWeapon2 = {"SwordTwoComboTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordBlinkTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordCriticalTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordHeavySecondStrikeTrait","SwordCursedLifeStealTrait"},
 	SwordWeapon3 = {"SwordTwoComboTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordBlinkTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordCriticalTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordHeavySecondStrikeTrait","SwordCursedLifeStealTrait"},
 	SwordWeapon4 = {"SwordConsecrationBoostTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordCursedLifeStealTrait"},
-	SpearWeapon = {"SpearReachAttack", "SpearAutoAttack", "SpearThrowExplode", "SpearThrowBounce", "SpearThrowPenetrate", "SpearThrowCritical", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearThrowElectiveCharge", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait"},
+	SpearWeapon1 = {"SpearReachAttack", "SpearAutoAttack", "SpearThrowExplode", "SpearThrowBounce", "SpearThrowPenetrate", "SpearThrowCritical", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearThrowElectiveCharge", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait"},
 	SpearWeapon2 = {"SpearReachAttack", "SpearAutoAttack", "SpearThrowPenetrate", "SpearThrowCritical", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait"},
 	SpearWeapon3 = {"SpearReachAttack", "SpearThrowExplode", "SpearThrowBounce", "SpearThrowPenetrate", "SpearThrowCritical", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearThrowElectiveCharge", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait"},
 	SpearWeapon4 = {"SpearSpinTravelDurationTrait","SpearReachAttack", "SpearThrowPenetrate", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearThrowElectiveCharge", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait"},
-	ShieldWeapon = {"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowElectiveCharge", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait"},
+	ShieldWeapon1 = {"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowElectiveCharge", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait"},
 	ShieldWeapon2 = {"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait"},
 	ShieldWeapon3 = {"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait"},
 	ShieldWeapon4 = {"ShieldLoadAmmoBoostTrait", "ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowElectiveCharge", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait"},
-	BowWeapon = {"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait"},
+	BowWeapon1 = {"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait"},
 	BowWeapon2 = {"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait"},
 	BowWeapon3 = {"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait"},
 	BowWeapon4 = {"BowBondBoostTrait", "BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait"},
-	FistWeapon = {"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistChargeSpecialTrait", "FistKillTrait", "FistSpecialLandTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistSpecialFireballTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait"},
+	FistWeapon1 = {"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistChargeSpecialTrait", "FistKillTrait", "FistSpecialLandTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistSpecialFireballTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait"},
 	FistWeapon2 = {"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistKillTrait", "FistSpecialLandTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait", "FistDoubleDashSpecialTrait"},
 	FistWeapon3 = {"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistChargeSpecialTrait", "FistKillTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistSpecialFireballTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait"},
 	FistWeapon4 = {"FistDetonateBoostTrait", "FistSpecialLandTrait", "FistChargeSpecialTrait", "FistConsecutiveAttackTrait", "FistDashAttackHealthBufferTrait", "FistAttackFinisherTrait", "FistAttackDefenseTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistKillTrait"},
-	GunWeapon = {"GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait"},
+	GunWeapon1 = {"GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait"},
 	GunWeapon2 = {"GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait"},
 	GunWeapon3 = {"GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait"},
 	GunWeapon4 = {"GunLoadedGrenadeBoostTrait", "GunLoadedGrenadeLaserTrait", "GunLoadedGrenadeSpeedTrait", "GunLoadedGrenadeWideTrait", "GunLoadedGrenadeInfiniteAmmoTrait", "GunSlowGrenade", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunGrenadeDropTrait"},
@@ -275,17 +275,19 @@ function OpenSeedControlScreen( args )
 	-- Hammer filter button
 	x = 480
 	y = 675
-	components["HammerFilterLeft"] = CreateScreenComponent({ Name = "ButtonCodexDown", X = x - 200, Y = y, Scale = 1.0, Sound = "/SFX/Menu Sounds/GeneralWhooshMENU", Group = "Combat_Menu" })
+
+	components["HammerFilterLeft"] = CreateScreenComponent({ Name = "ButtonCodexDown", X = x - 200, Y = y, Scale = 1.0, Group = "Combat_Menu" })
 	SetAngle({ Id = components["HammerFilterLeft"].Id, Angle = -90 })
 	SetScale({ Id = components["HammerFilterLeft"].Id, Fraction = .8 })
 	components["HammerFilterLeft"].OnPressedFunctionName = "HammerFilterLeft"
-	components["HammerFilterRight"] = CreateScreenComponent({ Name = "ButtonCodexDown", X = x + 200, Y = y, Scale = 1.0, Sound = "/SFX/Menu Sounds/GeneralWhooshMENU", Group = "Combat_Menu" })
+	components["HammerFilterRight"] = CreateScreenComponent({ Name = "ButtonCodexDown", X = x + 200, Y = y, Scale = 1.0, Group = "Combat_Menu" })
 	SetAngle({ Id = components["HammerFilterRight"].Id, Angle = 90 })
 	SetScale({ Id = components["HammerFilterRight"].Id, Fraction = .8 })
 	components["HammerFilterRight"].OnPressedFunctionName = "HammerFilterRight"
 
 	components["HammerFilter"] = CreateScreenComponent({ Name = "BlankObstacle", Scale = 0.5, Group = "Combat_Menu", X = x, Y = y })
 	EllosBoonSelectorMod.CurrentHammerIndex = 1
+
 	local weapon = GetEquippedWeapon()
 	local aspectIndex = GetEquippedWeaponTraitIndex( weapon )
 	local hammerIndex = EllosBoonSelectorMod.CurrentHammerIndex
@@ -302,7 +304,6 @@ function OpenSeedControlScreen( args )
 				OpacityWithOwner = true,
 			},
 		})
-
 
 	-- Icon Display
 	components.GodIcon = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 550, Y = 665 })
@@ -404,10 +405,12 @@ function DoesRewardMatchFilters(roomReward)
 		for priorityBoon, rarityFilter in pairs(EllosBoonSelectorMod.RarityFilter) do
 			local thisFilterPassed = false;
 			for index, boonOption in ipairs(roomReward.BoonData.Options) do
-				if rarityFilter == nil or rarityFilter == 0 then
-					thisFilterPassed = true
-				elseif rarityFilter > 0 and priorityBoon == boonOption.Boon and rarityFilter <= boonOption.Rarity then
-					thisFilterPassed = true
+				if boonOption.Blocked == nil then
+					if rarityFilter == nil or rarityFilter == 0 then
+						thisFilterPassed = true
+					elseif rarityFilter > 0 and priorityBoon == boonOption.Boon and rarityFilter <= boonOption.Rarity then
+						thisFilterPassed = true
+					end
 				end
 			end
 			-- If any rarity filter fails, return false
@@ -429,8 +432,10 @@ function DoesRewardMatchFilters(roomReward)
 		local hammerIndex = EllosBoonSelectorMod.CurrentHammerIndex
 
 		for index, hammerOption in ipairs(roomReward.HammerData.Options) do
-			if hammerOption.Name == EllosBoonSelectorMod.HammerOptions[weapon .. aspectIndex][hammerIndex] then
-				return true
+			if hammerOption.Blocked == nil then
+				if hammerOption.Name == EllosBoonSelectorMod.HammerOptions[weapon .. aspectIndex][hammerIndex] then
+					return true
+				end
 			end
 		end
 
@@ -635,6 +640,19 @@ function PredictStartingRoomReward( seedForPrediction, currentSeed )
 	return roomReward
 end
 
+function GetBlockedIndicesForAP()
+	-- Resync and calculate blocked indices from AP
+	RandomSynchronize(1) -- Sometimes 0 sometimes 1, maybe chaos makes 0?
+	local blockedIndices = {}
+	for i = 1, 3 do
+		table.insert( blockedIndices, i )
+	end
+	for i = 1, CalcNumLootChoices() do
+		RemoveRandomValue( blockedIndices )
+	end
+	return blockedIndices
+end
+
 function GetChaosChance()
 	-- TODO: How to retrieve room date for a future room? Just need tile name?
 	--local secretChance = room.SecretSpawnChance or RoomData.BaseRoom.SecretSpawnChance
@@ -723,14 +741,10 @@ function PredictHammerOptionsForWeapon( weapon, aspectIndex, seedForPrediction, 
 
 	-- Save off the current RNG the load the provided seed and offset
 	RandomSetNextInitSeed( {Seed = seedForPrediction} )
+	local blockedIndices = GetBlockedIndicesForAP()
 	RandomSynchronize(1) -- Offset that when the hammer options start being rolled at
 
-	local eligibleHammers = {"SwordTwoComboTrait","SwordSecondaryAreaDamageTrait","SwordGoldDamageTrait","SwordBlinkTrait","SwordThrustWaveTrait","SwordHealthBufferDamageTrait","SwordSecondaryDoubleAttackTrait","SwordCriticalTrait","SwordBackstabTrait","SwordDoubleDashAttackTrait","SwordHeavySecondStrikeTrait","SwordCursedLifeStealTrait"}
-	if aspectIndex == 1 then
-		eligibleHammers = DeepCopyTable(EllosBoonSelectorMod.HammerOptions[weapon])
-	else
-		eligibleHammers = DeepCopyTable(EllosBoonSelectorMod.HammerOptions[weapon .. aspectIndex])
-	end
+	local eligibleHammers = DeepCopyTable(EllosBoonSelectorMod.HammerOptions[weapon .. aspectIndex])
 
 	local selectedIndexes = TableLength( eligibleHammers )
 	for index = 1, 3 do
@@ -743,6 +757,12 @@ function PredictHammerOptionsForWeapon( weapon, aspectIndex, seedForPrediction, 
 			if hammer == selectedHammer then
 					table.remove(eligibleHammers, i)
 					break
+			end
+		end
+
+		for _ , value in pairs(blockedIndices) do
+			if value == index then
+				hammerOptions[index].Blocked = true
 			end
 		end
 	end
@@ -767,6 +787,7 @@ function PredictStartingGodBoonOptions( god, seedForPrediction, currentSeed )
 
 	-- Save off the current RNG the load the provided seed and offset
 	RandomSetNextInitSeed( {Seed = seedForPrediction} )
+	local blockedIndices = GetBlockedIndicesForAP()
 	RandomSynchronize(1) -- Offset that when the boons start being rolled at
 
 	-- First room always offers 3 priority boons (selected by excluding one of the 4 options)
@@ -786,6 +807,12 @@ function PredictStartingGodBoonOptions( god, seedForPrediction, currentSeed )
 		else
 			startingBoons[index].Rarity = 0
 		end
+
+		for key, value in pairs(blockedIndices) do
+			if value == index then
+				startingBoons[index].Blocked = true
+			end
+		end
 	end
 
 	-- Reset RNG to the pre-call state
@@ -794,6 +821,7 @@ function PredictStartingGodBoonOptions( god, seedForPrediction, currentSeed )
 	end
 
 	table.sort( startingBoons, function(boon1, boon2) return EllosBoonSelectorMod.PriorityBoonsOrder[boon1.Boon] < EllosBoonSelectorMod.PriorityBoonsOrder[boon2.Boon] end)
+
 	return startingBoons
 end
 
@@ -859,16 +887,23 @@ function UpdateRewardPreview( screen, roomReward )
 
 		local roomRewardOptions = roomReward.BoonData.Options
 		for index, boonOption in ipairs(roomRewardOptions) do
-			ModifyTextBox({ Id = screen.Components["Reward" .. index].Id, Text = roomReward.BoonData.God .. boonOption.Boon, Color = EllosBoonSelectorMod.RarityColors[boonOption.Rarity + 1]})
+			local color = EllosBoonSelectorMod.RarityColors[boonOption.Rarity + 1]
+			if boonOption.Blocked == true then
+				color = Color.Red
+			end
+			ModifyTextBox({ Id = screen.Components["Reward" .. index].Id, Text = roomReward.BoonData.God .. boonOption.Boon, Color = color})
 		end
 	elseif roomReward.Type == "Hammer" then
 		SetAnimation({ Name = "WeaponUpgradePreview", DestinationId = screen.Components.GodIcon.Id, OffsetX = 640, OffsetY = -45})
 		local hammerOptions = roomReward.HammerData.Options
 
-		-- Indices don't match up because hammer options are rotated in comparison to boons.  TODO: fix this in the helper method upstream instead
-		ModifyTextBox({ Id = screen.Components.Reward1.Id, Text = hammerOptions[2].Name, Color = Color.BoonPatchCommon })
-		ModifyTextBox({ Id = screen.Components.Reward2.Id, Text = hammerOptions[3].Name, Color = Color.BoonPatchCommon })
-		ModifyTextBox({ Id = screen.Components.Reward3.Id, Text = hammerOptions[1].Name, Color = Color.BoonPatchCommon })
+		for index = 1, 3 do
+			local color = Color.BoonPatchCommon
+			if hammerOptions[index].Blocked == true then
+				color = Color.Red
+			end
+			ModifyTextBox({ Id = screen.Components["Reward" .. index].Id, Text = hammerOptions[index].Name, Color = color })
+		end
 	end
 
 	if roomReward.FirstRoomChaos then
