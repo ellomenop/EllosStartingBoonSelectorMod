@@ -390,10 +390,24 @@ function OpenSeedControlScreen( args )
         OpacityWithOwner = true,
       },
     })
-  components.NextRoomIndicator = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
-  CreateTextBox({ Id = components.NextRoomIndicator.Id,
+    components.NextRoomNameIndicator = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
+    CreateTextBox({ Id = components.NextRoomNameIndicator.Id,
       Text = "",
       OffsetX = 400, OffsetY = 70,
+      FontSize = 22,
+      Color = Color.White,
+      Font = "AlegreyaSansSCRegular",
+      ShadowBlur = 0, ShadowColor = {0,0,0,1}, ShadowOffset={0, 2},
+      Justification = "Center",
+      DataProperties =
+      {
+        OpacityWithOwner = true,
+      },
+    })
+  components.NextRoomRewardIndicator = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
+  CreateTextBox({ Id = components.NextRoomRewardIndicator.Id,
+      Text = "",
+      OffsetX = 400, OffsetY = 100,
       FontSize = 22,
       Color = Color.White,
       Font = "AlegreyaSansSCRegular",
@@ -693,32 +707,11 @@ function IsSecondRoomRewardEligible(requirements, firstRoomReward)
   return true
 end
 
-function PredictSecondRoomReward(seedForPrediction, firstRoomShrine, firstRoomReward)
+function PredictSecondRoomReward(seedForPrediction, firstRoomReward, firstRoomShrine, secondRoomName)
   RandomSetNextInitSeed( {Seed = seedForPrediction} )
-  local rewardStore = "RunProgress"
-  if not firstRoomShrine then
-    RandomSynchronize(1) -- Known offset at which the RNG rolls the room
-    rewardStore = GetRandomValue({
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "MetaProgress",
-      "RunProgress" -- Athena room
-    })
+  local rewardStore = "MetaProgress"
+  if firstRoomShrine or secondRoomName == "RoomSimple01" then
+    rewardStore = "RunProgress"
   end
   local eligibleRewards = {}
   for key, reward in pairs(RewardStoreData[rewardStore]) do
@@ -790,7 +783,33 @@ function PredictStartingRoomReward( seedForPrediction, currentSeed )
     roomReward.SecondRoomChaos = PredictChaos(2, seedForPrediction)
   end
 
-  roomReward.SecondRoomReward = PredictSecondRoomReward(seedForPrediction, roomReward.FirstRoomShrine, roomReward.Type)
+  RandomSynchronize(1) -- Known offset at which the RNG rolls the room
+  roomReward.SecondRoomName = GetRandomValue({
+    "A_Combat01",
+    "A_Combat02",
+    "A_Combat03",
+    "A_Combat04",
+    "A_Combat05",
+    "A_Combat06",
+    "A_Combat07",
+    "A_Combat08A",
+    "A_Combat09",
+    "A_Combat10",
+    "A_Combat12",
+    "A_Combat13",
+    "A_Combat14",
+    "A_Combat15",
+    "A_Combat16",
+    "A_Combat19",
+    "A_Combat21",
+    "A_Combat24",
+    "RoomSimple01"
+  })
+  roomReward.SecondRoomReward = PredictSecondRoomReward(
+    seedForPrediction,
+    roomReward.Type,
+    roomReward.FirstRoomShrine,
+    roomReward.SecondRoomName)
   return roomReward
 end
 
@@ -1066,7 +1085,8 @@ function UpdateRewardPreview( screen, roomReward )
   else
     ModifyTextBox({ Id = screen.Components.ChaosRoomIndicator.Id, Text = "No Chaos" })
   end
-  ModifyTextBox({ Id = screen.Components.NextRoomIndicator.Id, Text = roomReward.SecondRoomReward})
+  ModifyTextBox({ Id = screen.Components.NextRoomNameIndicator.Id, Text = roomReward.SecondRoomName})
+  ModifyTextBox({ Id = screen.Components.NextRoomRewardIndicator.Id, Text = roomReward.SecondRoomReward})
 end
 
 -- Convenient place to add a button to the AdvancedTooltipScreen
