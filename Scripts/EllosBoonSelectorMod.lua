@@ -642,7 +642,7 @@ end
 
 function GetBlockedIndicesForAP()
   -- Resync and calculate blocked indices from AP
-  RandomSynchronize(1) -- Sometimes 0 sometimes 1, maybe chaos makes 0?
+  RandomSynchronize(2)
   local blockedIndices = {}
   for i = 1, 3 do
     table.insert( blockedIndices, i )
@@ -760,16 +760,15 @@ function PredictHammerOptionsForWeapon( weapon, aspectIndex, seedForPrediction, 
       end
     end
 
-    for _ , value in pairs(blockedIndices) do
-      if value == index then
-        hammerOptions[index].Blocked = true
-      end
-    end
   end
 
   -- Reset RNG to the pre-call state
   if currentSeed ~= nil then
     RandomSetNextInitSeed( {Seed = currentSeed} )
+  end
+
+  for _ , value in pairs(blockedIndices) do
+    hammerOptions[value].Blocked = true
   end
 
   return hammerOptions
@@ -807,12 +806,6 @@ function PredictStartingGodBoonOptions( god, seedForPrediction, currentSeed )
     else
       startingBoons[index].Rarity = 0
     end
-
-    for key, value in pairs(blockedIndices) do
-      if value == index then
-        startingBoons[index].Blocked = true
-      end
-    end
   end
 
   -- Reset RNG to the pre-call state
@@ -821,6 +814,10 @@ function PredictStartingGodBoonOptions( god, seedForPrediction, currentSeed )
   end
 
   table.sort( startingBoons, function(boon1, boon2) return EllosBoonSelectorMod.PriorityBoonsOrder[boon1.Boon] < EllosBoonSelectorMod.PriorityBoonsOrder[boon2.Boon] end)
+
+  for key, value in pairs(blockedIndices) do
+    startingBoons[value].Blocked = true
+  end
   return startingBoons
 end
 
