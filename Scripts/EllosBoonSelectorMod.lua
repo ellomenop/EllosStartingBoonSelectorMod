@@ -7,11 +7,13 @@ EllosBoonSelectorMod.config = config
 
 EllosBoonSelectorMod.RarityFilter = {}
 EllosBoonSelectorMod.GodFilter = ""
+EllosBoonSelectorMod.ChaosFilter = ""
 EllosBoonSelectorMod.CurrentHammerIndex = 1
 
 EllosBoonSelectorMod.RarityColors = {Color.BoonPatchCommon, Color.BoonPatchRare, Color.BoonPatchEpic, Color.BoonPatchLegendary}
 
 EllosBoonSelectorMod.BoonGods = {"Aphrodite", "Ares", "Artemis", "Athena", "Demeter", "Dionysus", "Poseidon", "Zeus"}
+EllosBoonSelectorMod.ChaosLocations = { "No Chaos", "Room 1 Chaos", "Room 2 Chaos" }
 EllosBoonSelectorMod.PriorityBoons = {"WeaponTrait","SecondaryTrait","RangedTrait","RushTrait"}
 EllosBoonSelectorMod.PriorityBoonsOrder = {WeaponTrait = 1, SecondaryTrait = 2, RangedTrait = 3, RushTrait = 4}
 EllosBoonSelectorMod.PriorityBoonCannonicalNameToCodeName = {
@@ -169,7 +171,7 @@ function OpenSeedControlScreen( args )
     })
 
   -- Roll seed for filters button
-  components.ClearFiltersButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "Combat_Menu", X = 320, Y = 760 })
+  components.ClearFiltersButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "Combat_Menu", X = 320, Y = 810 })
   components.ClearFiltersButton.OnPressedFunctionName = "ClearFilters"
   CreateTextBox({ Id = components.ClearFiltersButton.Id,
       Text = "Clear Filters",
@@ -186,7 +188,7 @@ function OpenSeedControlScreen( args )
     })
 
   -- Roll seed for filters button
-  components.RollSeedForFiltersButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "Combat_Menu", X = 625, Y = 760 })
+  components.RollSeedForFiltersButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "Combat_Menu", X = 625, Y = 810 })
   components.RollSeedForFiltersButton.OnPressedFunctionName = "RollSeedForFilters"
   CreateTextBox({ Id = components.RollSeedForFiltersButton.Id,
       Text = "Roll Seed For Filters",
@@ -243,6 +245,30 @@ function OpenSeedControlScreen( args )
       x = -250
       y = y + 50
     end
+  end
+
+  -- Chaos filter buttons
+  x = -225
+  y = 290
+  for _, location in pairs(EllosBoonSelectorMod.ChaosLocations) do
+    components[location .. "Filter"] = CreateScreenComponent({ Name = "ButtonDefault", Scale = 0.66, Group = "Combat_Menu", X = 500 + x, Y = 450 + y })
+    components[location .. "Filter"].OnPressedFunctionName = "ToggleChaosFilter"
+    components[location .. "Filter"].ChaosLocation = location
+    CreateTextBox({ Id = components[location .. "Filter"].Id,
+        Text = location,
+        OffsetX = 0, OffsetY = 0,
+        FontSize = 16,
+        Color = Color.BoonPatchCommon,
+        Font = "AlegreyaSansSCRegular",
+        ShadowBlur = 0, ShadowColor = {0,0,0,1}, ShadowOffset={0, 2},
+        Justification = "Center",
+        DataProperties =
+        {
+          OpacityWithOwner = true,
+        },
+      })
+
+    x = x + 200
   end
 
   -- Rarity filter buttons
@@ -364,6 +390,34 @@ function OpenSeedControlScreen( args )
         OpacityWithOwner = true,
       },
     })
+    components.NextRoomNameIndicator = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
+    CreateTextBox({ Id = components.NextRoomNameIndicator.Id,
+      Text = "",
+      OffsetX = 400, OffsetY = 70,
+      FontSize = 22,
+      Color = Color.White,
+      Font = "AlegreyaSansSCRegular",
+      ShadowBlur = 0, ShadowColor = {0,0,0,1}, ShadowOffset={0, 2},
+      Justification = "Center",
+      DataProperties =
+      {
+        OpacityWithOwner = true,
+      },
+    })
+  components.NextRoomRewardIndicator = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
+  CreateTextBox({ Id = components.NextRoomRewardIndicator.Id,
+      Text = "",
+      OffsetX = 400, OffsetY = 100,
+      FontSize = 22,
+      Color = Color.White,
+      Font = "AlegreyaSansSCRegular",
+      ShadowBlur = 0, ShadowColor = {0,0,0,1}, ShadowOffset={0, 2},
+      Justification = "Center",
+      DataProperties =
+      {
+        OpacityWithOwner = true,
+      },
+    })
 
   local roomReward = PredictStartingRoomReward((NextSeeds[1] or 000000))
   UpdateRewardPreview( screen, roomReward )
@@ -384,6 +438,14 @@ function OpenSeedControlScreen( args )
 end
 
 function DoesRewardMatchFilters(roomReward)
+  if EllosBoonSelectorMod.ChaosFilter == "No Chaos" and (roomReward.FirstRoomChaos or roomReward.SecondRoomChaos) then
+    return false
+  elseif EllosBoonSelectorMod.ChaosFilter == "Room 1 Chaos" and not roomReward.FirstRoomChaos then
+    return false
+  elseif EllosBoonSelectorMod.ChaosFilter == "Room 2 Chaos" and not roomReward.SecondRoomChaos then
+    return false
+  end
+
   local targetReward = "Boon"
 
   if EllosBoonSelectorMod.GodFilter == "" and next(EllosBoonSelectorMod.RarityFilter) == nil then
@@ -469,11 +531,15 @@ end
 
 function ClearFilters ( screen, button )
   EllosBoonSelectorMod.GodFilter = ""
+  EllosBoonSelectorMod.ChaosFilter = ""
   EllosBoonSelectorMod.RarityFilter = {}
 
   -- TODO: Use a constant for the priority boons so we don't hardcode them in multiple places
   for _, god in pairs(EllosBoonSelectorMod.BoonGods) do
     ModifyTextBox({ Id = screen.Components[god .. "Filter"].Id, Color = Color.BoonPatchCommon })
+  end
+  for _, location in pairs(EllosBoonSelectorMod.ChaosLocations) do
+    ModifyTextBox({ Id = screen.Components[location .. "Filter"].Id, Color = Color.BoonPatchCommon })
   end
   for _, priorityBoon in pairs({"Attack", "Special", "Dash", "Cast"}) do
     ModifyTextBox({ Id = screen.Components[priorityBoon .. "Filter"].Id, Color = Color.BoonPatchCommon })
@@ -490,6 +556,19 @@ function ToggleGodFilter ( screen, button )
       ModifyTextBox({ Id = screen.Components[god .. "Filter"].Id, Color = Color.BoonPatchCommon })
     else
       ModifyTextBox({ Id = screen.Components[god .. "Filter"].Id, Color = Color.Gray })
+    end
+  end
+end
+
+function ToggleChaosFilter( screen, button )
+  local chaosLocation = button.ChaosLocation
+  EllosBoonSelectorMod.ChaosFilter = chaosLocation
+
+  for _, location in pairs(EllosBoonSelectorMod.ChaosLocations) do
+    if location == chaosLocation then
+      ModifyTextBox({ Id = screen.Components[location .. "Filter"].Id, Color = Color.BoonPatchCommon })
+    else
+      ModifyTextBox({ Id = screen.Components[location .. "Filter"].Id, Color = Color.Gray })
     end
   end
 end
@@ -609,6 +688,58 @@ function CloseSeedControlScreen( screen, button )
   OnScreenClosed({ Flag = screen.Name })
 end
 
+function IsSecondRoomRewardEligible(requirements, firstRoomReward)
+  if requirements.RequiredUpgradeableGodTraits ~= nil and requirements.RequiredUpgradeableGodTraits >= 1 and firstRoomReward ~= "Boon" then
+    return false
+  end
+  if requirements.RequiredMaxWeaponUpgrades ~= nil and requirements.RequiredMaxWeaponUpgrades < 1 and firstRoomReward == "Hammer" then
+    return false
+  end
+  if requirements.RequiredMinDepth ~= nil and requirements.RequiredMinDepth >= 2 then
+    return false
+  end
+  if requirements.RequiredMinBiomeDepth ~= nil and requirements.RequiredMinBiomeDepth >= 2 then
+    return false
+  end
+  if requirements.RequiredFalseCosmetics ~= nil then
+    return false
+  end
+  return true
+end
+
+function PredictSecondRoomReward(seedForPrediction, firstRoomReward, firstRoomShrine, secondRoomName)
+  RandomSetNextInitSeed( {Seed = seedForPrediction} )
+  local rewardStore = "MetaProgress"
+  if firstRoomShrine or secondRoomName == "RoomSimple01" then
+    rewardStore = "RunProgress"
+  end
+  local eligibleRewards = {}
+  for key, reward in pairs(RewardStoreData[rewardStore]) do
+    if IsSecondRoomRewardEligible(reward.GameStateRequirements, firstRoomReward) then
+      table.insert(eligibleRewards, key)
+    end
+  end
+  RandomSynchronize(4)
+  local selectedKey = GetRandomValue( eligibleRewards )
+  local reward = RewardStoreData[rewardStore][selectedKey].Name
+  RemoveValueAndCollapse( eligibleRewards, selectedKey )
+  local eligibleGods = DeepCopyTable(EllosBoonSelectorMod.BoonGods)
+  if reward == "Boon" then
+    reward = GetRandomValue( eligibleGods )
+    RemoveValueAndCollapse( eligibleGods, reward )
+  end
+  if firstRoomShrine then
+    -- roll for the actual exit second
+    RandomSynchronize(4)
+    selectedKey = GetRandomValue( eligibleRewards )
+    reward = RewardStoreData.RunProgress[selectedKey].Name
+    if reward == "Boon" then
+      reward = GetRandomValue( eligibleGods )
+    end
+  end
+  return reward
+end
+
 --- Takes in a seed and returns the predicted RoomReward object for the starting room.
 -- TODO: Update this to use a separate RNG entirely rather than using the current RNG and putting it back again
 --
@@ -628,15 +759,57 @@ function PredictStartingRoomReward( seedForPrediction, currentSeed )
     -- Get exact boon rewards and rarity and update the menu
     roomReward.BoonData.Options = PredictStartingGodBoonOptions( roomReward.BoonData.God, seedForPrediction, currentSeed )
     roomReward.FirstRoomChaos = PredictChaos(6, seedForPrediction)
+    if roomReward.FirstRoomChaos then
+      roomReward.FirstRoomShrine = false
+    else
+      roomReward.FirstRoomShrine = PredictChaos(7, seedForPrediction)
+    end
   elseif roomReward.Type == "Hammer" then
     roomReward.HammerData = {}
     local currentWeapon = GetEquippedWeapon()
     roomReward.HammerData.Options = PredictHammerOptionsForWeapon(currentWeapon, GetEquippedWeaponTraitIndex( currentWeapon ), seedForPrediction, currentSeed)
     roomReward.FirstRoomChaos = PredictChaos(5, seedForPrediction)
+
+    if roomReward.FirstRoomChaos then
+      roomReward.FirstRoomShrine = false
+    else
+      roomReward.FirstRoomShrine = PredictChaos(6, seedForPrediction)
+    end
   end
 
-  roomReward.SecondRoomChaos = PredictChaos(2, seedForPrediction)
+  if roomReward.FirstRoomChaos then
+    roomReward.SecondRoomChaos = false
+  else
+    roomReward.SecondRoomChaos = PredictChaos(2, seedForPrediction)
+  end
 
+  RandomSynchronize(1) -- Known offset at which the RNG rolls the room
+  roomReward.SecondRoomName = GetRandomValue({
+    "A_Combat01",
+    "A_Combat02",
+    "A_Combat03",
+    "A_Combat04",
+    "A_Combat05",
+    "A_Combat06",
+    "A_Combat07",
+    "A_Combat08A",
+    "A_Combat09",
+    "A_Combat10",
+    "A_Combat12",
+    "A_Combat13",
+    "A_Combat14",
+    "A_Combat15",
+    "A_Combat16",
+    "A_Combat19",
+    "A_Combat21",
+    "A_Combat24",
+    "RoomSimple01"
+  })
+  roomReward.SecondRoomReward = PredictSecondRoomReward(
+    seedForPrediction,
+    roomReward.Type,
+    roomReward.FirstRoomShrine,
+    roomReward.SecondRoomName)
   return roomReward
 end
 
@@ -912,6 +1085,8 @@ function UpdateRewardPreview( screen, roomReward )
   else
     ModifyTextBox({ Id = screen.Components.ChaosRoomIndicator.Id, Text = "No Chaos" })
   end
+  ModifyTextBox({ Id = screen.Components.NextRoomNameIndicator.Id, Text = roomReward.SecondRoomName})
+  ModifyTextBox({ Id = screen.Components.NextRoomRewardIndicator.Id, Text = roomReward.SecondRoomReward})
 end
 
 -- Convenient place to add a button to the AdvancedTooltipScreen
