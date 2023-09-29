@@ -364,6 +364,20 @@ function OpenSeedControlScreen( args )
         OpacityWithOwner = true,
       },
     })
+  components.ErrorMessageTextbox = CreateScreenComponent({ Name = "BlankObstacle", Scale = 1.0, Group = "Combat_Menu", X = 1200, Y = 650 })
+  CreateTextBox({ Id = components.ErrorMessageTextbox.Id,
+      Text = "",
+      OffsetX = 400, OffsetY = 70,
+      FontSize = 22,
+      Color = Color.Red,
+      Font = "AlegreyaSansSCRegular",
+      ShadowBlur = 0, ShadowColor = {0,0,0,1}, ShadowOffset={0, 2},
+      Justification = "Center",
+      DataProperties =
+      {
+        OpacityWithOwner = true,
+      },
+    })
 
   local roomReward = PredictStartingRoomReward((NextSeeds[1] or 000000))
   UpdateRewardPreview( screen, roomReward )
@@ -446,7 +460,7 @@ end
 function RollSeedForFilters( screen, button )
   local roomReward = nil
   local counter = 0
-  local seed = (NextSeeds[1] or 000000)
+  local seed = (NextSeeds[1] or 000000) + 1
   repeat
     roomReward = PredictStartingRoomReward(seed + counter)
     counter = counter + 1
@@ -460,6 +474,7 @@ function RollSeedForFilters( screen, button )
 
   if counter > 1000 then
     -- TODO: tell the user we failed to find a seed
+    roomReward.errorMessage = "No match after 1000 seeds. Try again"
   end
 
   UpdateRewardPreview( screen, roomReward )
@@ -912,6 +927,12 @@ function UpdateRewardPreview( screen, roomReward )
   else
     ModifyTextBox({ Id = screen.Components.ChaosRoomIndicator.Id, Text = "No Chaos" })
   end
+
+  if roomReward.errorMessage ~= nil then
+    ModifyTextBox({ Id = screen.Components.ErrorMessageTextbox.Id, Text = roomReward.errorMessage })
+  else
+    ModifyTextBox({ Id = screen.Components.ErrorMessageTextbox.Id, Text = " " })
+  end
 end
 
 -- Convenient place to add a button to the AdvancedTooltipScreen
@@ -920,7 +941,7 @@ ModUtil.WrapBaseFunction("CreatePrimaryBacking", function ( baseFunc )
 
   -- Add button for RNG seed select menu but only between runs
   if ModUtil.PathGet("CurrentDeathAreaRoom") then
-    components.RngSeedButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "Combat_Menu_TraitTray", X = CombatUI.TraitUIStart + 105, Y = 930 })
+    components.RngSeedButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "TraitTrayTraits", X = CombatUI.TraitUIStart + 105, Y = 930 })
     components.RngSeedButton.OnPressedFunctionName = "OpenRngSeedSelectorScreen"
     CreateTextBox({ Id = components.RngSeedButton.Id,
         Text = "Set Starting Boon",
