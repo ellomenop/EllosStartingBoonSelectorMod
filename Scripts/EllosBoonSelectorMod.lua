@@ -1,4 +1,4 @@
-ModUtil.RegisterMod("EllosBoonSelectorMod")
+ModUtil.Mod.Register("EllosBoonSelectorMod")
 
 local config = {
   showPreview = true
@@ -890,7 +890,7 @@ function ElloGetBoonRarityChances( godName, roomRarityOverride )
 end
 
 function UpdateRewardPreview( screen, roomReward )
-  if config.showPreview == false then
+  if config == nil or config.showPreview == false then
     return
   end
   if roomReward.Type == "Boon" then
@@ -933,11 +933,11 @@ function UpdateRewardPreview( screen, roomReward )
 end
 
 -- Convenient place to add a button to the AdvancedTooltipScreen
-ModUtil.WrapBaseFunction("CreatePrimaryBacking", function ( baseFunc )
+ModUtil.Path.Wrap("CreatePrimaryBacking", function ( baseFunc )
   local components = ScreenAnchors.TraitTrayScreen.Components
 
   -- Add button for RNG seed select menu but only between runs
-  if ModUtil.PathGet("CurrentDeathAreaRoom") then
+  if ModUtil.Path.Get("CurrentDeathAreaRoom") then
     components.RngSeedButton = CreateScreenComponent({ Name = "ButtonDefault", Scale = 1.0, Group = "TraitTrayTraits", X = CombatUI.TraitUIStart + 105, Y = 930 })
     components.RngSeedButton.OnPressedFunctionName = "OpenRngSeedSelectorScreen"
     CreateTextBox({ Id = components.RngSeedButton.Id,
